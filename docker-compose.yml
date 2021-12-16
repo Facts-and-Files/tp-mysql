@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: tp_mysql
+    volumes:
+      - database:/var/lib/mysql
+      - ./root-data/:/root/
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    command:
+      - "mysqld"
+      - "--max-allowed-packet=1073741824"
+    ports:
+      - 3307:3306
+    networks:
+      - tp_backend
+
+volumes:
+  database:
+
+networks:
+  tp_backend:
+    external: true
