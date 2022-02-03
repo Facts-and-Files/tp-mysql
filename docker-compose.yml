@@ -15,8 +15,6 @@ services:
     command:
       - "mysqld"
       - "--max-allowed-packet=1073741824"
-    ports:
-      - 3307:3306
     networks:
       - tp_backend
 
